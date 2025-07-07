@@ -1,0 +1,223 @@
+.logotext {
+    transition: all 0.5s;
+    font-variation-settings: "wght" 900, "ital" 1;
+    font-size: 55px; /* Desktop font size */
+    text-align: center;
+    color: transparent;
+    font-family: "Meta", sans-serif;
+    color: #b62e35;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+@media (max-width: 768px) {
+    .logotext {
+        font-size: 15px; /* Smaller font size for mobile */
+        color: #b62e35;
+        cursor: pointer;
+        text-align: center;
+        
+    }
+    
+}
+
+
+/* Normal header */
+.sticky-header {
+    width: 100%;
+    background-color: #fff;
+    box-shadow: none;
+    transition: box-shadow 0.3s ease; /* Smooth transition for shadow when it becomes sticky */
+}
+.lh{
+    line-height: 15px;
+}
+/* Sticky header when scrolling */
+.sticky-header.sticky-active {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    box-shadow: 0 4px 2px -2px gray; /* Shadow effect when header is sticky */
+}
+
+/* Prevent content from overlapping when header becomes sticky */
+.sticky-header.sticky-active + .content {
+    padding-top: 70px; /* Adjust this to the height of the header */
+}
+
+
+/* Custom CSS for improved aesthetics */
+.noticeCard {
+    border: 2px solid #bd0745; /* Soft blue border for aesthetics */
+    height: 300px;
+    width: 95%;
+    margin: auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border-radius: 8px; /* Rounded corners */
+    position: relative;
+}
+
+.card-header h3 {
+    margin-top: 0; /* Remove the top margin */
+    padding: 15px;
+}
+.card-body{
+    padding:0px 25px 25px 25px;
+}
+.card-body p {
+    font-size: 16px;
+    color: #555;
+}
+
+/* Title and Description Styles for Important Notice */
+.notice-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.notice-description {
+    font-size: 16px;
+    color: #666;
+}
+
+/* Styling the links inside All Notices */
+.notice-link {
+    color: #bd0745;
+    text-decoration: none;
+    font-size: 16px;
+    display: block;
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+.notice-link:hover {
+    color: #850d35;
+    text-decoration: underline;
+}
+
+/* Styling for the date inside the notice */
+.notice-date {
+    font-size: 14px;
+    color: #999;
+    margin-left: 10px;
+}
+
+/* Stop scrolling when the marquee is hovered */
+#notice-marquee:hover {
+    animation-play-state: paused;
+}
+
+/* Styling for the buttons */
+.card-footer {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.card-footer .btn {
+    margin: 5px;
+}
+/* Custom CSS for button styling */
+.btn-light {
+    background-color: #bd0745;
+    color: white;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition effect */
+    border: none; /* Ensures no border appears */
+}
+
+.btn-light:hover,
+.btn-light:active { /* Apply same style for hover and active states */
+    background-color: #ec1059;
+    color: white;
+    border: none; /* Keeps the border consistent */
+}
+
+.btn-light:focus {
+    outline: none; /* Remove focus outline */
+    box-shadow: none; /* Remove the shadow effect on focus */
+}
+
+/* Styling for the search bar and date filter */
+#searchInput,
+#dateFilter {
+    margin-top: 10px;
+}
+
+/* Styling for the notice table */
+#noticeTable {
+    margin-top: 20px;
+}
+
+/* Responsive styling for table */
+@media (max-width: 767px) {
+    #searchInput,
+    #dateFilter {
+        margin-top: 10px;
+    }
+
+    .table td, .table th {
+        padding: 10px;
+    }
+}
+.ctxt{
+    font-size: 16px;
+    line-height: 30px;
+}
+.cardS {
+    background-color: #fff; /* White background */
+    border-radius: 8px; /* Rounded corners */
+    padding: 20px; /* Padding inside the card */
+    
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+    
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+}
+
+.footlink_color{
+    color: white;
+}
+.footlink_color:hover{
+    color: #bd0745;
+}
+/* Pyramid Icon for List */
+.newscontent{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.newscontent li{
+    min-height: 46px !important;
+}
+
+
+.cardS {
+    background-color: #fff; /* White background */
+    border-radius: 8px; /* Rounded corners */
+    padding: 20px; /* Padding inside the card */
+    
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+    
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+}
+.bta:active {
+    color: white;
+}
+
+/* Mobile Menu */
+.mcs a{
+    color: #850d35;
+}
+
+.contact{
+    
+    padding: 50px;
+}
+
+
+
+
+
