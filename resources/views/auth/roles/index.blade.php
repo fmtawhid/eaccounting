@@ -58,8 +58,18 @@
                 { data: "name", name: "name" },
                 { data: "permissions", name: "permissions", orderable: false, searchable: false },
                 { data: "actions", name: "actions", orderable: false, searchable: false }
-            ]
-        });
+            ],
+            
+        columnDefs: [
+            {
+                targets: 2, // "Permissions" column index (0-based)
+                width: "200px",
+                render: function(data, type, row) {
+                    return `<div style="max-width: 180px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${data}">${data}</div>`;
+                }
+            }
+        ]
+    });
 
         // Handle Delete Click
         $(document).on("click", ".delete-role", function() {
