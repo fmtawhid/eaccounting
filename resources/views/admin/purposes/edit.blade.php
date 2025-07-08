@@ -21,7 +21,7 @@
         <div class="col-lg-6">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('purposes.update', $purpose->id) }}" method="POST">
+                    <form action="{{ route('purposes.update', ['purpose' => $purpose->id]) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="mb-3">

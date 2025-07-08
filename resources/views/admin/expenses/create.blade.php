@@ -99,7 +99,7 @@
                                     @foreach ($accounts as $account)
                                         <option value="{{ $account->id }}"
                                             {{ old('account_id') == $account->id ? 'selected' : '' }}>
-                                            {{ $account->name }} ({{ $account->number }})
+                                            {{ $account->name }} {{ $account->number }} ({{ $account->amount }})
                                         </option>
                                     @endforeach
                                 </select>

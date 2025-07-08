@@ -79,8 +79,8 @@ Route::prefix('panel')->middleware(['auth', 'checkRole:admin'])->group(function 
     Route::middleware(['permission:purpose_view'])->get('/purposes', [PurposeController::class, 'index'])->name('purposes.index'); // View Purpose list
     Route::middleware(['permission:purpose_add'])->get('/purposes/create', [PurposeController::class, 'create'])->name('purposes.create'); // Show form to create Purpose
     Route::middleware(['permission:purpose_add'])->post('/purposes/store', [PurposeController::class, 'store'])->name('purposes.store'); // Store Purpose data
-    Route::middleware(['permission:purpose_edit'])->get('/purposes/{id}/edit', [PurposeController::class, 'edit'])->name('purposes.edit'); // Show form to edit Purpose
-    Route::middleware(['permission:purpose_edit'])->put('/purposes/{id}/update', [PurposeController::class, 'update'])->name('purposes.update'); // Update Purpose data
+    Route::middleware(['permission:purpose_edit'])->get('/purposes/{purpose}/edit', [PurposeController::class, 'edit'])->name('purposes.edit'); // Show form to edit Purpose
+    Route::middleware(['permission:purpose_edit'])->put('/purposes/{purpose}/update', [PurposeController::class, 'update'])->name('purposes.update');
     Route::middleware(['permission:purpose_delete'])->delete('/purposes/{id}/destroy', [PurposeController::class, 'destroy'])->name('purposes.destroy'); // Delete Purpose
 
 

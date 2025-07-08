@@ -31,7 +31,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="brance_id" class="form-label">Brance <span class="text-danger">*</span></label>
+                <label for="brance_id" class="form-label">Branch <span class="text-danger">*</span></label>
                 <select name="brance_id" id="brance_id" 
                         class="form-select @error('brance_id') is-invalid @enderror" required>
                     <option value="" selected disabled>Select Brance</option>
@@ -45,10 +45,10 @@
             </div>
 
             <div class="mb-3">
-                <label for="amount" class="form-label">Amount <span class="text-danger">*</span></label>
+                <!-- <label for="amount" class="form-label">Amount <span class="text-danger">*</span></label> -->
                 <input type="number" step="0.01" name="amount" id="amount" 
                        class="form-control @error('amount') is-invalid @enderror" 
-                       value="{{ old('amount') }}" required>
+                       value="{{ old('amount', 0) }}" required readonly hidden>
                 @error('amount')<div class="invalid-feedback">{{ $message }}</div>@enderror
             </div>
 
@@ -61,6 +61,7 @@
         </form>
     </div>
 </div>
+@endsection
 
 @section('scripts')
 <script>
@@ -69,12 +70,16 @@ $(function() {
         e.preventDefault();
         let form = $(this);
 
+        // Clear previous errors
+        form.find('.is-invalid').removeClass('is-invalid');
+        form.find('.invalid-feedback').remove();
+
         $.ajax({
             url: form.attr('action'),
             method: 'POST',
             data: form.serialize(),
             success: function(response) {
-                toastr.success(response.success);
+                toastr.success(response.success || 'Account created successfully.');
                 window.location.href = "{{ route('accounts.index') }}";
             },
             error: function(xhr) {
@@ -90,6 +95,7 @@ $(function() {
                         }
                     });
                 } else {
+                    console.error(xhr.responseText);
                     toastr.error('Something went wrong!');
                 }
             }
@@ -97,6 +103,4 @@ $(function() {
     });
 });
 </script>
-@endsection
-
 @endsection

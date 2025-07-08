@@ -559,7 +559,7 @@
                     @canany(['account_view'])
                     <li class="side-nav-item">
                         <a href="{{ route('accounts.index') }}" class="side-nav-link d-flex align-items-center w-100 h-100">
-                            <i class="ri-bank-line"></i>  {{-- তুমি চাইলে আইকন পরিবর্তন করতে পারো --}}
+                            <i class="ri-bank-line"></i> 
                             <span>Accounts</span>
                         </a>
                     </li>
@@ -568,8 +568,8 @@
                     @canany(['brance_view'])
                     <li class="side-nav-item">
                         <a href="{{ route('brances.index') }}" class="side-nav-link d-flex align-items-center w-100 h-100">
-                            <i class="ri-building-2-line"></i> {{-- চাইলে আইকন বদলাও --}}
-                            <span>Brances</span>
+                            <i class="ri-building-2-line"></i> 
+                            <span>Branches</span>
                         </a>
                     </li>
                     @endcanany
@@ -1070,13 +1070,114 @@
         toastr.info("{{ session()->get('warning') }}");
     </script>
     @endif
-    <script>
-        // $(function() {
-        //     // Summernote
-        //     $('.textarea').summernote()
-        // })
-    </script>
+    <!-- Apexcharts -->
+    <script src="{{ asset('assets/admin/assets/vendor/apexcharts/apexcharts.min.js') }}"></script>
 
+
+<script>
+
+// Column Chart
+        var colors = ["#F65B4C", "#4254BA"];
+        var dataColors = $("#basic-column").data("colors");
+
+        var options = {
+            chart: {
+                height: 314,
+                type: "bar",
+                toolbar: { show: false }
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: false,
+                    endingShape: "rounded",
+                    columnWidth: "60%"
+                }
+            },
+            dataLabels: { enabled: false },
+            stroke: {
+                show: true,
+                width: 1,
+                colors: ["transparent"]
+            },
+            colors: dataColors ? dataColors.split(",") : colors,
+            series: [
+                {
+                    name: "Expenses",
+                    data: expensesData
+                },
+                {
+                    name: "Earning",
+                    data: paymentsData
+                }
+            ],
+            xaxis: {
+                categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                labels: {
+                    rotate: -45,
+                    hideOverlappingLabels: false,
+                    trim: false,
+                    style: { fontSize: '12px' }
+                }
+            },
+            legend: { offsetY: 5 },
+            fill: { opacity: 1 },
+            grid: {
+                row: {
+                    colors: ["transparent", "transparent"],
+                    opacity: 0.2
+                },
+                borderColor: "#f1f3fa",
+                padding: { bottom: 5 }
+            },
+            
+            tooltip: {
+                y: {
+                    formatter: function (val) {
+                        return "৳ " + val.toFixed(2);
+                    }
+                }
+            }
+        };
+        var chart = new ApexCharts(document.querySelector("#basic-column"), options);
+        chart.render();
+
+
+
+
+   /// Pie Chart (Expense vs Earning)
+    document.addEventListener("DOMContentLoaded", function () {
+    var pieColors = $("#simple-pie").data("colors");
+    var defaultColors = ['#4254ba', '#6c757d', '#17a497', '#fa5c7c', '#f06548'];
+
+    const labels = branchPieChartData.map(item => item.name);
+    const series = branchPieChartData.map(item => item.value);
+
+    var pieOptions = {
+        chart: {
+            height: 360,
+            type: 'pie',
+        },
+        series: series,
+        labels: labels,
+        colors: pieColors ? pieColors.split(",") : defaultColors,
+        legend: {
+            position: 'bottom',
+            horizontalAlign: 'center',
+        },
+        tooltip: {
+            y: {
+                formatter: function (val) {
+                    return "৳ " + val.toLocaleString();
+                }
+            }
+        }
+    };
+
+    var pieChart = new ApexCharts(document.querySelector("#simple-pie"), pieOptions);
+    pieChart.render();
+});
+
+</script>
 
 
     @yield('scripts')

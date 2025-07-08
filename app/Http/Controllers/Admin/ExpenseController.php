@@ -46,6 +46,8 @@ class ExpenseController extends Controller
 
     // Fetch all expense heads for dropdowns or filters in the view
     $expenseHeads = ExpenseHead::all();
+    $brances= Brance::all();
+    $accounts = Account::all();
 
     // Check if the request is an AJAX call
     if (request()->ajax()) {
@@ -108,7 +110,7 @@ class ExpenseController extends Controller
     }
 
     // Return the view with expenses and expense heads data
-    return view('admin.expenses.expense_report', compact('expenseHeads'));
+    return view('admin.expenses.expense_report', compact('expenseHeads', 'brances', 'accounts'));
 }
 
 

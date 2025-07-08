@@ -64,19 +64,27 @@ class AccountController extends Controller
 
     // Store new account
     public function store(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'number' => 'required|string|max:255',
-            'brance_id' => 'required|exists:brances,id',
-            'amount' => 'required|numeric|min:0',
-            'note' => 'nullable|string',
-        ]);
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'number' => 'required|string|max:255',
+        'brance_id' => 'required|exists:brances,id',
+        'amount' => 'nullable|numeric|min:0', // ✅ required বাদ দিয়ে nullable করা হয়েছে
+        'note' => 'nullable|string',
+    ]);
 
-        Account::create($request->only('name', 'number', 'brance_id', 'amount', 'note'));
+    Account::create([
+        'name' => $request->name,
+        'number' => $request->number,
+        'brance_id' => $request->brance_id,
+        'amount' => $request->amount ?? 0, // ✅ ইনপুট না থাকলে 0 নিবে
+        'note' => $request->note,
+        'balance' => 0, // বা চাইলে এখানে amount-ও দেওয়া যেতে পারে
+    ]);
 
-        return redirect()->route('accounts.index')->with('success', 'Account created successfully.');
-    }
+    return response()->json(['success' => 'Account created successfully.']);
+}
+
 
     // Show edit page
     public function edit(Account $account)
