@@ -8,6 +8,7 @@ use App\Models\ExpenseAttachment;
 use App\Models\ExpenseHead;
 use App\Models\Brance;
 use App\Models\Account;
+use App\Models\ExpenseName;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -234,7 +235,8 @@ public function export_report(Request $request)
         $expenseHeads = ExpenseHead::all();
         $brances = Brance::all();
         $accounts = Account::all();
-        return view('admin.expenses.create', compact('expenseHeads', 'brances', 'accounts'));
+        $expenseNames = ExpenseName::all();
+        return view('admin.expenses.create', compact('expenseHeads', 'brances', 'accounts', 'expenseNames'));
     }
 
     /**

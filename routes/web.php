@@ -14,6 +14,8 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Admin\BranceController;
 use App\Http\Controllers\Admin\AccountController;
+use App\Http\Controllers\Admin\ExpenseNameController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -146,5 +148,13 @@ Route::prefix('panel')->middleware(['auth', 'checkRole:admin'])->group(function 
     Route::middleware(['permission:account_edit'])->put('/accounts/{account}/update', [AccountController::class, 'update'])->name('accounts.update');
     Route::middleware(['permission:account_delete'])->delete('/accounts/{account}/destroy', [AccountController::class, 'destroy'])->name('accounts.destroy');
 
+
+    // 🟢 Expense Name Management Routes
+    Route::middleware(['permission:expense_name_view'])->get('/expense_names', [ExpenseNameController::class, 'index'])->name('expense_names.index');
+    Route::middleware(['permission:expense_name_add'])->get('/expense_names/create', [ExpenseNameController::class, 'create'])->name('expense_names.create');
+    Route::middleware(['permission:expense_name_add'])->post('/expense_names/store', [ExpenseNameController::class, 'store'])->name('expense_names.store');
+    Route::middleware(['permission:expense_name_edit'])->get('/expense_names/{expense_name}/edit', [ExpenseNameController::class, 'edit'])->name('expense_names.edit');
+    Route::middleware(['permission:expense_name_edit'])->put('/expense_names/{expense_name}/update', [ExpenseNameController::class, 'update'])->name('expense_names.update');
+    Route::middleware(['permission:expense_name_delete'])->delete('/expense_names/{expense_name}/destroy', [ExpenseNameController::class, 'destroy'])->name('expense_names.destroy');
 
 });

@@ -47,7 +47,7 @@ unset($__errorArgs, $__bag); ?>
                             </div>
 
                             <!-- Name -->
-                            <div class="mb-3 col-md-6">
+                            <!-- <div class="mb-3 col-md-6">
                                 <label for="name" class="form-label">Expense Name <span
                                         class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="name" name="name"
@@ -62,7 +62,33 @@ $message = $__bag->first($__errorArgs[0]); ?>
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                            </div>
+                            </div> -->
+<!-- Expense Name -->
+<div class="mb-3 col-md-6">
+    <label for="name" class="form-label">Expense Name <span class="text-danger">*</span></label>
+    <select class="form-control select2" id="name" name="name" style="width: 100%;" required>
+        <option value="">Select Expense Name</option>
+        <?php $__currentLoopData = $expenseNames; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ename): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <option value="<?php echo e($ename->id); ?>" <?php echo e(old('name', $expense->name ?? '') == $ename->id ? 'selected' : ''); ?>>
+                <?php echo e($ename->name); ?>
+
+            </option>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    </select>
+    <?php $__errorArgs = ['name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+        <div class="text-danger my-2"><?php echo e($message); ?></div>
+    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+</div>
+
+
+
 
                             <!-- Invoice No -->
                             <div class="mb-3 col-md-6">

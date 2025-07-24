@@ -42,6 +42,11 @@ class Expense extends Model
     {
         return $this->belongsTo(Account::class, 'account_id');
     }
+    public function expenseName()
+    {
+        return $this->belongsTo(ExpenseName::class, 'name');
+    }
+
 
 
     /**

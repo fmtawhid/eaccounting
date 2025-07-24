@@ -41,7 +41,7 @@
                             </div>
 
                             <!-- Name -->
-                            <div class="mb-3 col-md-6">
+                            <!-- <div class="mb-3 col-md-6">
                                 <label for="name" class="form-label">Expense Name <span
                                         class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="name" name="name"
@@ -49,7 +49,25 @@
                                 @error('name')
                                     <div class="text-danger my-2">{{ $message }}</div>
                                 @enderror
+                            </div> -->
+                            <!-- Expense Name -->
+                            <div class="mb-3 col-md-6">
+                                <label for="name" class="form-label">Expense Name <span class="text-danger">*</span></label>
+                                <select class="form-control select2" id="name" name="name" style="width: 100%;" required>
+                                    <option value="">Select Expense Name</option>
+                                    @foreach($expenseNames as $ename)
+                                        <option value="{{ $ename->id }}" {{ old('name', $expense->name ?? '') == $ename->id ? 'selected' : '' }}>
+                                            {{ $ename->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('name')
+                                    <div class="text-danger my-2">{{ $message }}</div>
+                                @enderror
                             </div>
+
+
+
 
                             <!-- Invoice No -->
                             <div class="mb-3 col-md-6">
